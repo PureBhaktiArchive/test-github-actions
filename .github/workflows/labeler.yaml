@@ -1,16 +1,12 @@
-name: Monorepo PR Repo Labeler
-
+name: "Pull Request Labeler"
 on:
-  pull_request:
-    branches:
-      - main
+  - pull_request
 
 jobs:
-  labelPR:
-    name: Label PR With Repo(s)
+  triage:
     runs-on: ubuntu-latest
     steps:
-      - name: Label PRs
-        uses: adamzolyak/monorepo-pr-labeler-action@patching
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - uses: actions/labeler@main
+      with:
+        repo-token: "${{ secrets.GITHUB_TOKEN }}"
+        sync-labels: true
