@@ -2,7 +2,6 @@ name: Monorepo PR Repo Labeler
 
 on:
   pull_request:
-    types: [opened]
     branches:
       - main
 
