@@ -1,0 +1,11 @@
+name: Dummy
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  dummy:
+    name: Dummy jobs
+    runs-on: ubuntu-latest
