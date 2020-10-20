@@ -6,5 +6,7 @@ jobs:
 
     steps:
       - uses: jitterbit/await-check-suites@v1
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
       - name: Create Deployment
         run: echo Created
