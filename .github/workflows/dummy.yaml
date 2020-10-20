@@ -9,3 +9,5 @@ jobs:
   dummy:
     name: Dummy jobs
     runs-on: ubuntu-latest
+    steps:
+        - run: echo Haribol
