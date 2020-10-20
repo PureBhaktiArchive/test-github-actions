@@ -5,8 +5,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: jitterbit/await-check-suites@v1
+      - name: Wait for build to succeed
+        uses: fountainhead/action-wait-for-check@v1.0.0
+        id: wait-for-build
         with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          checkName: Dummy job
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
       - name: Create Deployment
+        if: steps.wait-for-build.outputs.conclusion == 'success'
         run: echo Created
