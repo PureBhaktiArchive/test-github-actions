@@ -1,4 +1,4 @@
 frontend:
-  - 'frontend/**/*'
+  - "frontend/**/*"
 functions:
-  - 'functions/**/*'
+  - "functions/**/*"
