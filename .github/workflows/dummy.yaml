@@ -11,3 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo Haribol
+
+  dummy2:
+    name: Dummy job2
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo Haribol2
