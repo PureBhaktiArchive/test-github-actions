@@ -1,4 +1,4 @@
-name: Dummy
+name: Dummy workflow
 
 on:
   pull_request:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   dummy:
-    name: Dummy jobs
+    name: Dummy job
     runs-on: ubuntu-latest
     steps:
         - run: echo Haribol
