@@ -37,7 +37,7 @@ jobs:
     if: ${{ needs.changes.outputs.frontend == 'true' }}
     steps:
       - name: Lint
-        run: echo Linted
+        run: lint
       - name: Build
         run: echo Built
       - name: Test
