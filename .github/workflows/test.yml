@@ -55,6 +55,14 @@ jobs:
       - name: Test
         run: echo Tested functions
 
+  all:
+    runs-on: ubuntu-latest
+    needs:
+      - functions
+      - frontend
+    steps:
+      - run: echo All done
+
   test:
     runs-on: ubuntu-latest
     needs: changes
