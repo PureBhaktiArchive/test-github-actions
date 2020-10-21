@@ -24,3 +24,5 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest]
+    steps:
+      - run: echo Build
