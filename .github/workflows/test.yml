@@ -65,8 +65,9 @@ jobs:
       fail-fast: false
 
     steps:
-      - name: Check
-        run: echo "${{ needs.changes.outputs[matrix.project] }}""
+      - run: echo "${{ needs.changes.outputs }}"
+      - run: echo "${{ toJson(needs.changes.outputs) }}"
+      - run: echo "${{ toJson(needs.changes.outputs[matrix.project]) }}"
 
       - uses: actions/checkout@master
 
