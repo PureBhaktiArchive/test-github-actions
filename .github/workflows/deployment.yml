@@ -22,9 +22,9 @@ jobs:
     steps:
       - name: "Wait for status checks"
         id: waitforstatuschecks
-        uses: "WyriHaximus/github-action-wait-for-status@v2"
+        uses: "WyriHaximus/github-action-wait-for-status@latest"
         with:
-          ignoreActions: deployment1,deployment2
+          ignoreActions: deployment1,deployment2,deployment3
           checkInterval: 13
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
