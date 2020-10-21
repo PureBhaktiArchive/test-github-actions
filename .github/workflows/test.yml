@@ -30,6 +30,8 @@ jobs:
               - 'functions/**'
             markdown:
               - '**/**.md'
+      - name: Print
+        run: echo "${{ toJson(filter.outputs) }}"
 
   echo:
     runs-on: ubuntu-latest
