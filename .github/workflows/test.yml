@@ -65,6 +65,9 @@ jobs:
       fail-fast: false
 
     steps:
+      - name: Check
+        run: echo "${{ needs.changes.outputs[matrix.project] }}""
+
       - uses: actions/checkout@master
 
       - uses: actions/setup-node@v1
