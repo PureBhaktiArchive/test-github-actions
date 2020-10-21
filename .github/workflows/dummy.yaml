@@ -17,3 +17,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo Haribol2
+
+  build:
+    name: Build
+    runs-on: ${{ matrix.job.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
