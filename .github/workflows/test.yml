@@ -64,12 +64,10 @@ jobs:
       fail-fast: false
 
     steps:
-      - run: echo "${{ needs.changes.outputs }}"
       - run: echo "${{ toJson(needs.changes.outputs) }}"
       - run: echo "${{ matrix.project }}"
-      - run: echo "${{ toJson(matrix.project) }}"
-      - run: echo "${{ toJson(needs.changes.outputs['frontend']) }}"
-      - run: echo "${{ toJson(needs.changes.outputs[matrix.project]) }}"
+      - run: echo "${{ needs.changes.outputs['frontend'] }}"
+      - run: echo "${{ needs.changes.outputs[matrix.project] }}"
 
       - uses: actions/checkout@master
 
