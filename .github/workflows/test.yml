@@ -56,17 +56,19 @@ jobs:
         run: echo Tested functions
 
   test:
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     needs: changes
     strategy:
       matrix:
-        os: [ubuntu-latest]
         project: [frontent, functions]
       fail-fast: false
 
     steps:
       - run: echo "${{ needs.changes.outputs }}"
       - run: echo "${{ toJson(needs.changes.outputs) }}"
+      - run: echo "${{ matrix.project }}"
+      - run: echo "${{ toJson(matrix.project) }}"
+      - run: echo "${{ toJson(needs.changes.outputs['frontend']) }}"
       - run: echo "${{ toJson(needs.changes.outputs[matrix.project]) }}"
 
       - uses: actions/checkout@master
