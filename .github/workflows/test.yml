@@ -70,6 +70,14 @@ jobs:
     strategy:
       matrix:
         project: [frontend, functions]
+        isFunctions: ${{ needs.changes.outputs.functions == 'true' }}
+        isFrontend: ${{ needs.changes.outputs.frontend == 'true' }}
+        exclude:
+          - project: frontend
+            isFrontend: false
+          - project: functions
+            isFunctions: false
+
       fail-fast: false
 
     steps:
