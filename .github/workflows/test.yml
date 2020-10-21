@@ -69,7 +69,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        project: []
+        project: [frontent, functions]
       fail-fast: false
 
     steps:
