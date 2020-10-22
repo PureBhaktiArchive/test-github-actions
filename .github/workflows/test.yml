@@ -65,20 +65,13 @@ jobs:
 
     name: Test ${{ matrix.project }}
     steps:
-      - run: echo "${{ needs.changes.outputs[matrix.project] }}"
-      - uses: Thog/action-equals@master
-        id: hasChanged
-        with:
-          a: ${{ needs.changes.outputs[matrix.project] }}
-          b: "true"
-
       - uses: actions/checkout@master
-        if: steps.hasChanged.outputs.result
+        if: needs.changes.outputs[matrix.project]
 
       - uses: actions/setup-node@v1
         with:
           node-version: 10
-        if: steps.hasChanged.outputs.result
+        if: needs.changes.outputs[matrix.project]
 
       - name: Cache NPM modules
         uses: actions/cache@v1
@@ -87,22 +80,14 @@ jobs:
           key: node-${{ runner.os }}-${{ matrix.project }}-${{ hashFiles(format('{0}/package-lock.json', matrix.project)) }}
           restore-keys: |
             node-${{ runner.os }}-
-        if: steps.hasChanged.outputs.result
+        if: needs.changes.outputs[matrix.project]
 
-      # - run: npm ci
-      #   working-directory: ${{ matrix.project }}
-      # - run: npm run lint --if-present
-      #   working-directory: ${{ matrix.project }}
-      # - run: npm run build --if-present
-      #   working-directory: ${{ matrix.project }}
-      # - run: npm run test --if-present -- --ci
-      #   working-directory: ${{ matrix.project }}
       - name: Lint
         run: echo Linted
-        if: steps.hasChanged.outputs.result
+        if: needs.changes.outputs[matrix.project]
       - name: Build
         run: echo Built
-        if: steps.hasChanged.outputs.result
+        if: needs.changes.outputs[matrix.project]
       - name: Test
         run: echo Tested
-        if: steps.hasChanged.outputs.result
+        if: needs.changes.outputs[matrix.project]
