@@ -63,6 +63,7 @@ jobs:
         project: [frontent, functions]
       fail-fast: false
 
+    name: Test "${{ matrix.project }}"
     steps:
       - run: echo "${{ toJson(needs.changes.outputs) }}"
       - run: echo "${{ matrix.project }}"
