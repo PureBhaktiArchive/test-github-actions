@@ -60,21 +60,25 @@ jobs:
     needs: changes
     strategy:
       matrix:
-        project: [frontent, functions]
+        project: [frontend, functions]
       fail-fast: false
 
-    name: Test "${{ matrix.project }}"
+    name: Test ${{ matrix.project }}
     steps:
-      - run: echo "${{ toJson(needs.changes.outputs) }}"
-      - run: echo "${{ matrix.project }}"
-      - run: echo "${{ needs.changes.outputs['frontend'] }}"
       - run: echo "${{ needs.changes.outputs[matrix.project] }}"
+      - uses: Thog/action-equals@master
+        id: hasChanged
+        with:
+          a: ${{ needs.changes.outputs[matrix.project] }}
+          b: "true"
 
       - uses: actions/checkout@master
+        if: steps.hasChanged.outputs.result
 
       - uses: actions/setup-node@v1
         with:
           node-version: 10
+        if: steps.hasChanged.outputs.result
 
       - name: Cache NPM modules
         uses: actions/cache@v1
@@ -83,6 +87,7 @@ jobs:
           key: node-${{ runner.os }}-${{ matrix.project }}-${{ hashFiles(format('{0}/package-lock.json', matrix.project)) }}
           restore-keys: |
             node-${{ runner.os }}-
+        if: steps.hasChanged.outputs.result
 
       # - run: npm ci
       #   working-directory: ${{ matrix.project }}
@@ -94,7 +99,10 @@ jobs:
       #   working-directory: ${{ matrix.project }}
       - name: Lint
         run: echo Linted
+        if: steps.hasChanged.outputs.result
       - name: Build
         run: echo Built
+        if: steps.hasChanged.outputs.result
       - name: Test
         run: echo Tested
+        if: steps.hasChanged.outputs.result
