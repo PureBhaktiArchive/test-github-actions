@@ -65,16 +65,17 @@ jobs:
 
     name: Test ${{ matrix.project }}
     defaults:
-      if: needs.changes.outputs[matrix.project]
       run:
         working-directory: ${{ matrix.project }}
 
     steps:
       - uses: actions/checkout@master
+        if: needs.changes.outputs[matrix.project]
 
       - uses: actions/setup-node@v1
         with:
           node-version: 10
+        if: needs.changes.outputs[matrix.project]
 
       - name: Cache NPM modules
         uses: actions/cache@v1
@@ -83,10 +84,14 @@ jobs:
           key: node-${{ runner.os }}-${{ matrix.project }}-${{ hashFiles(format('{0}/package-lock.json', matrix.project)) }}
           restore-keys: |
             node-${{ runner.os }}-
+        if: needs.changes.outputs[matrix.project]
 
       - name: Lint
         run: echo Linted
+        if: needs.changes.outputs[matrix.project]
       - name: Build
         run: echo Built
+        if: needs.changes.outputs[matrix.project]
       - name: Test
         run: echo Tested
+        if: needs.changes.outputs[matrix.project]
