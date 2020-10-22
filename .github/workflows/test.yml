@@ -64,9 +64,6 @@ jobs:
       fail-fast: false
 
     name: Test ${{ matrix.project }}
-    defaults:
-      run:
-        working-directory: ${{ matrix.project }}
 
     steps:
       - run: echo needs.changes.outputs[matrix.project]
