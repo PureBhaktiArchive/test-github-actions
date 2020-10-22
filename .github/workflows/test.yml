@@ -93,3 +93,10 @@ jobs:
       - name: Test
         run: echo Tested
         if: needs.changes.outputs[matrix.project] == 'true'
+
+  all:
+    name: Test all
+    runs-on: ubuntu-latest
+    needs: [test, frontend, functions]
+    steps:
+      - run: exit 0
