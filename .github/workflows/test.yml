@@ -42,6 +42,8 @@ jobs:
         run: echo Built
       - name: Test
         run: echo Tested
+      - name: Fail
+        run: exit 1
 
   functions:
     runs-on: ubuntu-latest
