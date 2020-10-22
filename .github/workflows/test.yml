@@ -68,12 +68,12 @@ jobs:
     steps:
       - run: echo ${{ needs.changes.outputs[matrix.project] }}
       - uses: actions/checkout@master
-        if: needs.changes.outputs[matrix.project]
+        if: needs.changes.outputs[matrix.project] == 'true'
 
       - uses: actions/setup-node@v1
         with:
           node-version: 10
-        if: needs.changes.outputs[matrix.project]
+        if: needs.changes.outputs[matrix.project] == 'true'
 
       - name: Cache NPM modules
         uses: actions/cache@v1
@@ -82,14 +82,14 @@ jobs:
           key: node-${{ runner.os }}-${{ matrix.project }}-${{ hashFiles(format('{0}/package-lock.json', matrix.project)) }}
           restore-keys: |
             node-${{ runner.os }}-
-        if: needs.changes.outputs[matrix.project]
+        if: needs.changes.outputs[matrix.project] == 'true'
 
       - name: Lint
         run: echo Linted
-        if: needs.changes.outputs[matrix.project]
+        if: needs.changes.outputs[matrix.project] == 'true'
       - name: Build
         run: echo Built
-        if: needs.changes.outputs[matrix.project]
+        if: needs.changes.outputs[matrix.project] == 'true'
       - name: Test
         run: echo Tested
-        if: needs.changes.outputs[matrix.project]
+        if: needs.changes.outputs[matrix.project] == 'true'
