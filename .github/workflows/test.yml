@@ -69,6 +69,7 @@ jobs:
         working-directory: ${{ matrix.project }}
 
     steps:
+      - run: echo needs.changes.outputs[matrix.project]
       - uses: actions/checkout@master
         if: needs.changes.outputs[matrix.project]
 
