@@ -1,0 +1,28 @@
+name: Dummy workflow
+
+on:
+  pull_request_target:
+    branches:
+      - main
+
+jobs:
+  dummy:
+    name: Dummy job
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo Haribol
+
+  dummy2:
+    name: Dummy job2
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo Haribol2
+
+  build:
+    name: Build
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    steps:
+      - run: echo Build
